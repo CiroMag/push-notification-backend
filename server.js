@@ -36,7 +36,7 @@ app.post("/send", async (req, res) => {
 });
 
 // Verificação e escuta da porta
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 if (!PORT) {
   throw new Error("PORT não definida. Render requer que PORT seja definida automaticamente.");
 }
