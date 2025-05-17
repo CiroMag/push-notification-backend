@@ -6,10 +6,12 @@ require("dotenv").config();
 const app = express();
 app.use(bodyParser.json());
 
+// Inicialização do Firebase Admin SDK
 admin.initializeApp({
   credential: admin.credential.cert(JSON.parse(process.env.GOOGLE_CREDENTIALS)),
 });
 
+// Rota para envio de notificações
 app.post("/send", async (req, res) => {
   const { titulo, texto, tokens } = req.body;
 
@@ -33,7 +35,12 @@ app.post("/send", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+// Verificação e escuta da porta
+const PORT = process.env.PORT;
+if (!PORT) {
+  throw new Error("PORT não definida. Render requer que PORT seja definida automaticamente.");
+}
+
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
