@@ -23,6 +23,7 @@ app.post("/send", async (req, res) => {
     notification: {
       title: titulo,
       body: texto,
+      image: "https://app.healthup.com.br/logo-sem-fundo-app-2"
     },
     tokens: tokens,
   };
