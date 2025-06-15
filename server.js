@@ -20,18 +20,11 @@ app.post("/send", async (req, res) => {
   }
 
   const message = {
-    notification: {
+    data: {
       title: titulo,
-      body: texto
-    },
-    webpush: {
-      notification: {
-        icon: "https://app.healthup.com.br/logo-sem-fundo-app-2",
-        badge: "https://app.healthup.com.br/logo-sem-fundo-app-2"
-      },
-      fcm_options: {
-        link: "https://app.healthup.com.br/" // ou adicione rota específica se quiser
-      }
+      body: texto,
+      image: "https://app.healthup.com.br/logo-sem-fundo-app-2",
+      link: "https://app.healthup.com.br/"
     },
     tokens: tokens
   };
