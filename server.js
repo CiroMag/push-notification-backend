@@ -29,7 +29,7 @@ app.post("/send", async (req, res) => {
     data: {
       title: titulo,
       body: texto,
-      image: "https://app.healthup.com.br/logo-sem-fundo-app-2",
+      image: "https://app.healthup.com.br/logo-sem-fundo-app-2.png",
       link: "https://app.healthup.com.br/"
     },
     tokens: tokens
