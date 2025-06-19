@@ -19,7 +19,13 @@ app.post("/send", async (req, res) => {
     return res.status(400).json({ error: "Dados inválidos. Requer titulo, texto e tokens." });
   }
 
+  // Payload único com notification + data (notificação exibida automaticamente no iOS, e no Android suprimida via SW)
   const message = {
+    notification: {
+      title: titulo,
+      body: texto,
+      imageUrl: "https://app.healthup.com.br/logo-sem-fundo-app-2"
+    },
     data: {
       title: titulo,
       body: texto,
@@ -31,8 +37,10 @@ app.post("/send", async (req, res) => {
 
   try {
     const response = await admin.messaging().sendEachForMulticast(message);
+    console.log("📤 Firebase response:", JSON.stringify(response, null, 2));
     res.status(200).json({ success: true, response });
   } catch (err) {
+    console.error("❌ Erro ao enviar notificação:", err);
     res.status(500).json({ error: err.message });
   }
 });
